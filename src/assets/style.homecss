@@ -1,0 +1,115 @@
+/* پایه‌ها */  
+body {  
+  margin: 0;  
+  font-family: Inter, Roboto, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;  
+  background: #0b1020;  
+  color: #e5e7eb;  
+  min-height: 100vh;  
+}  
+
+.container {  
+  /* min-height: 100vh;   */
+  display: flex;  
+  flex-direction: column;  
+  align-items: center;  
+  justify-content: center;  
+  padding: 40px 16px;  
+  gap: 28px;  
+  position: relative;  
+  z-index: 1;  
+  background: radial-gradient(circle at 10% -10%, rgba(99,102,241,.25), transparent 25%),  
+              radial-gradient(circle at 90% 20%, rgba(236,72,153,.25), transparent 25%);  
+  width: 100%;  
+  box-sizing: border-box;  
+}  
+
+/* hero با طراحی کارت-گونه — ریسپانسیو */  
+.hero {  
+  /* width: min(860px, 92%);   */
+  text-align: center;  
+  padding: 5% 20%;  
+  border-radius: 20px;  
+  /* background: rgba(2,6,23,.68);   */
+  /* border: 1px solid rgba(255,255,255,.12);   */
+  /* box-shadow: 0 20px 40px rgba(0,0,0,.25);   */
+  /* backdrop-filter: saturate(1.2) blur(2px);   */
+  
+}  
+.hero p {  
+  margin: 0;  
+  font-weight: 700;  
+  color: #93c5fd;  
+  display: inline-block;  
+  padding: 6px 12px;  
+  border-radius: 999px;  
+  background: rgba(99,102,241, .25);  
+}  
+.hero h3 {  
+  margin: 12px 0 8px;  
+  font-size: 1.75rem; /* ~28px */  
+  line-height: 1.2;  
+  font-weight: 700;  
+}  
+.hero h5 {  
+  margin: 0;  
+  font-size: 0.95rem;  
+  color: #cbd5e1;  
+  line-height: 1.6;  
+}  
+
+/* دکمه‌ها با استایل مدرن و ریسپانسیو */  
+.button {  
+  display: flex;  
+  gap: 12px;  
+  align-items: center;  
+  justify-content: center;  
+  flex-wrap: wrap;  
+  width: 100%;  
+}  
+.button button {  
+  padding: 12px 20px;  
+  border: 0;  
+  border-radius: 999px;  
+  background: linear-gradient(135deg, #4f46e5 0%, #22d3ee 100%);  
+  color: white;  
+  font-weight: 600;  
+  cursor: pointer;  
+  transition: transform .2s ease, box-shadow .2s ease;  
+  box-shadow: 0 6px 16px rgba(79, 70, 229, .5);  
+  min-width: 120px;  
+}  
+.button button:hover {  
+  transform: translateY(-2px);  
+  box-shadow: 0 10px 20px rgba(79,70,229,.65);  
+}  
+.button button:active {  
+  transform: translateY(0);  
+  opacity: .95;  
+}  
+.button .outline {  
+  background: transparent;  
+  color: #e5e7eb;  
+  border: 2px solid rgba(255,255,255,.4);  
+  box-shadow: none;  
+}  
+
+/* لینک‌های رسانه اجتماعی */  
+.media-link {  
+  display: flex;  
+  gap: 16px;  
+  justify-content: center;  
+  margin-top: 8px;  
+}  
+.media-link a {  
+  color: #e5e7eb;  
+  text-decoration: none;  
+  padding: 8px 12px;  
+  border-radius: 999px;  
+  border: 1px solid rgba(255,255,255,.25);  
+  transition: background .2s ease, color .2s ease;  
+}  
+.media-link a:hover {  
+  background: rgba(255,255,255,.12);  
+  color: #fff;  
+}  
+
