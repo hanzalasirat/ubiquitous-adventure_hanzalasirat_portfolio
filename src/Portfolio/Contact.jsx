@@ -208,7 +208,7 @@ export default function Contact() {
           <div className="availability">
             <div className="status-indicator">
               <div className="status-dot"></div>
-              <span>Currently available for new projects</span>
+              {/* <span>Currently available for new projects</span> */}
             </div>
             <p>Response time: Usually within 24 hours</p>
           </div>

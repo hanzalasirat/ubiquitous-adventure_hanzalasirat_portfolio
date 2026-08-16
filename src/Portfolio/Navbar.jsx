@@ -18,56 +18,54 @@ export default function Navbar() {
     setIsMobileMenuOpen(false);
   };
 
-  // Close mobile menu when route changes
   useEffect(() => {
     closeMobileMenu();
   }, [location]);
 
+  const navLinks = [
+    { path: '/', label: 'Home' },
+    { path: '/skills', label: 'Skills' },
+    { path: '/projects', label: 'Projects' },
+    { path: '/ai', label: 'AI' },
+    { path: '/weather', label: 'Weather' },
+    { path: '/map', label: 'Map' },
+  ];
+
   return (
-    <div className="nav-wrapper">
-      <div className="navbar">
+    <>
+      <nav className="navbar">
         <div className="nav-container">
-          {/* Logo/Brand */}
-          <div className="nav-brand">
-            <Link to="/" className="brand-link">
-              <div className="brand-icon">⚡</div>
-              <span className="brand-text">Hanzala Sirat</span>
-            </Link>
-          </div>
+          {/* Logo */}
+          <Link to="/" className="nav-logo">
+            <span className="logo-icon">⚡</span>
+            <span className="logo-text">Hanzala Sirat</span>
+          </Link>
 
-          {/* Desktop Navigation */}
-          <div className="nav-desktop">
-            <nav className="nav-links">
+          {/* Desktop Menu */}
+          <ul className="nav-menu">
+            {navLinks.map((link) => (
+              <li key={link.path}>
+                <Link 
+                  to={link.path} 
+                  className={`nav-link ${isActive(link.path) ? 'active' : ''}`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+            <li>
               <Link 
-                to="/" 
-                className={`nav-link ${isActive('/') ? 'active' : ''}`}
+                to="/contact" 
+                className={`nav-link contact-btn ${isActive('/contact') ? 'active' : ''}`}
               >
-                Home
+                Contact
               </Link>
-              <Link 
-                to="/skills" 
-                className={`nav-link ${isActive('/skills') ? 'active' : ''}`}
-              >
-                Skills
-              </Link>
-              <Link 
-                to="/projects" 
-                className={`nav-link ${isActive('/projects') ? 'active' : ''}`}
-              >
-                Projects
-              </Link>
-            </nav>
-            <Link 
-              to="/contact" 
-              className={`nav-contact-btn ${isActive('/contact') ? 'active' : ''}`}
-            >
-              Contact
-            </Link>
-          </div>
+            </li>
+          </ul>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Hamburger */}
           <button 
-            className={`mobile-menu-toggle ${isMobileMenuOpen ? 'active' : ''}`}
+            className={`hamburger ${isMobileMenuOpen ? 'active' : ''}`}
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
           >
@@ -79,38 +77,31 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         <div className={`mobile-menu ${isMobileMenuOpen ? 'active' : ''}`}>
-          <nav className="mobile-nav-links">
-            <Link 
-              to="/" 
-              className={`mobile-nav-link ${isActive('/') ? 'active' : ''}`}
-              onClick={closeMobileMenu}
-            >
-              Home
-            </Link>
-            <Link 
-              to="/skills" 
-              className={`mobile-nav-link ${isActive('/skills') ? 'active' : ''}`}
-              onClick={closeMobileMenu}
-            >
-              Skills
-            </Link>
-            <Link 
-              to="/projects" 
-              className={`mobile-nav-link ${isActive('/projects') ? 'active' : ''}`}
-              onClick={closeMobileMenu}
-            >
-              Projects
-            </Link>
-            <Link 
-              to="/contact" 
-              className={`mobile-nav-link contact ${isActive('/contact') ? 'active' : ''}`}
-              onClick={closeMobileMenu}
-            >
-              Contact Me
-            </Link>
-          </nav>
+          <ul className="mobile-nav-menu">
+            {navLinks.map((link) => (
+              <li key={link.path}>
+                <Link 
+                  to={link.path} 
+                  className={`mobile-nav-link ${isActive(link.path) ? 'active' : ''}`}
+                  onClick={closeMobileMenu}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link 
+                to="/contact" 
+                className="mobile-nav-link contact-btn"
+                onClick={closeMobileMenu}
+              >
+                Contact
+              </Link>
+            </li>
+          </ul>
         </div>
-      </div>
-    </div>
+      </nav>
+      <div className="navbar-spacer"></div>
+    </>
   );
 }

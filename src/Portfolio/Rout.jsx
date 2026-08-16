@@ -5,6 +5,9 @@ import Projects from "./Projects";
 import Contact from "./Contact";
 import Navbar from "./Navbar";
 import Home from "./Home";
+import AI from "./AI";
+import Weather from "./Weather";
+import MapPage from "./Map";
 import Python from "./skills/Python";
 import JavaScript from "./skills/JavaScript";
 import Php from "./skills/Php";
@@ -24,6 +27,9 @@ export default function Rout() {
         <Route path="/skills" element={<Skills />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/ai" element={<AI />} />
+        <Route path="/weather" element={<Weather />} />
+        <Route path="/map" element={<MapPage />} />
         {/* skills pages */}
         <Route path="/python" element={<Python />} />
         <Route path="/javascript" element={<JavaScript />} />
