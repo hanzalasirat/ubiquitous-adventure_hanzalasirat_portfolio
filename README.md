@@ -28,3 +28,7 @@ The contact form prepares a draft in the visitor's email application; it does no
 The existing workflow deploys `dist` to GitHub Pages after changes merge into `main`. The configured Vite base path matches this repository. Hash-based navigation supports refresh and direct project links on static hosting.
 
 See `docs/REBUILD.md` for the implemented scope and owner information still required. Old components are retained for reference and are not loaded by the new app.
+
+## Browser verification
+
+`npm test`, `npm run check:app` and `npm run build` check the rebuilt application. `npm run test:e2e` runs the desktop/mobile browser suite after building (requires Chromium installed through Playwright). The **Verify portfolio** GitHub workflow installs the browser and runs these checks automatically, saving screenshots and an HTML report as the `portfolio-browser-verification` artifact for 14 days.

@@ -563,6 +563,7 @@ export default function App() {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
   const mainRef = useRef(null);
+  const menuRef = useRef(null);
   const t = copy[lang];
   useEffect(() => {
     document.documentElement.lang = lang === "fa" ? "fa-AF" : "en";
@@ -584,6 +585,17 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "instant" });
     mainRef.current?.focus({ preventScroll: true });
   }, [pathname, lang, t]);
+  useEffect(() => {
+    if (!open) return;
+    function closeOnEscape(event) {
+      if (event.key === "Escape") {
+        setOpen(false);
+        menuRef.current?.focus();
+      }
+    }
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [open]);
   const nav = [
     ["/", "home"],
     ["/about", "about"],
@@ -593,7 +605,15 @@ export default function App() {
   ];
   return (
     <>
-      <a className="skip-link" href="#main">
+      <a
+        className="skip-link"
+        href="#main"
+        onClick={(event) => {
+          event.preventDefault();
+          mainRef.current?.focus();
+          mainRef.current?.scrollIntoView();
+        }}
+      >
         {t.skip}
       </a>
       <header className="site-header">
@@ -606,6 +626,7 @@ export default function App() {
           hs<span>.</span>
         </Link>
         <button
+          ref={menuRef}
           className="menu-toggle"
           aria-label={t.menu}
           aria-expanded={open}
@@ -708,7 +729,15 @@ export default function App() {
             GitHub <Arrow />
           </a>
           <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            onClick={() =>
+              window.scrollTo({
+                top: 0,
+                behavior: window.matchMedia("(prefers-reduced-motion: reduce)")
+                  .matches
+                  ? "instant"
+                  : "smooth",
+              })
+            }
           >
             {t.top} ↑
           </button>
