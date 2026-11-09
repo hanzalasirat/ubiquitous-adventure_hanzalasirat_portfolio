@@ -1,16 +1,30 @@
-# React + Vite
+# Hanzala Sirat — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive React + Vite portfolio in Dari and English, designed for GitHub Pages.
 
-Currently, two official plugins are available:
+## Develop
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```sh
+npm ci
+npm run dev
+```
 
-## React Compiler
+## Verify
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```sh
+node --test tests/helpers.test.js
+npm run build
+```
 
-## Expanding the ESLint configuration
+## Edit content
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `src/content/portfolio.js`: identity, contacts, skills, projects, optional CV and project URLs.
+- `src/content/copy.js`: Dari and English interface text.
+- `src/index.css`: responsive layout, theme and print styling.
+- `src/App.jsx`: pages and interactions.
+
+The contact form prepares a draft in the visitor's email application; it does not claim to send messages. The printable profile can be saved as PDF using the browser. A real CV download is shown only when `resumeUrl` is configured. The local portfolio guide needs no API key. Weather uses the existing Open-Meteo service.
+
+The existing workflow deploys `dist` to GitHub Pages after changes merge into `main`. The configured Vite base path matches this repository. Hash-based navigation supports refresh and direct project links on static hosting.
+
+See `docs/REBUILD.md` for the implemented scope and owner information still required. Old components are retained for reference and are not loaded by the new app.
