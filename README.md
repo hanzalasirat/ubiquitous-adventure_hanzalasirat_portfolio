@@ -1,34 +1,25 @@
-# Hanzala Sirat — Portfolio
+# Hanzala Sirat / Creative Engineering
 
-A responsive React + Vite portfolio in Dari and English, designed for GitHub Pages.
-
-## Develop
+Premium bilingual portfolio built with **Next.js, TypeScript, Tailwind CSS, Framer Motion and Lucide**.
 
 ```sh
 npm ci
 npm run dev
-```
-
-## Verify
-
-```sh
-node --test tests/helpers.test.js
+npm test
+npm run typecheck
 npm run build
 ```
 
-## Edit content
+`next build` exports HTML into `out/`; static hosting needs no Node server. Project case studies are pre-rendered under `/projects/<slug>/`. `npm start` is intended only if static export is removed for a server deployment; serve `out/` for the current static build.
 
-- `src/content/portfolio.js`: identity, contacts, skills, projects, optional CV and project URLs.
-- `src/content/copy.js`: Dari and English interface text.
-- `src/index.css`: responsive layout, theme and print styling.
-- `src/App.jsx`: pages and interactions.
+## Personalize
 
-The contact form prepares a draft in the visitor's email application; it does not claim to send messages. The printable profile can be saved as PDF using the browser. A real CV download is shown only when `resumeUrl` is configured. The local portfolio guide needs no API key. Weather uses the existing Open-Meteo service.
+Edit `src/data/portfolio.ts`: profile, skills, projects, optional CV/portrait, verified timeline, approved testimonials. Add a supplied CV to `public/` and set `settings.cvUrl` to its public path. Add actual source/demo URLs to projects; missing links are not fabricated. Use real image paths in `settings.portraitUrl` to enable the responsive lazy-loaded portrait.
 
-The existing workflow deploys `dist` to GitHub Pages after changes merge into `main`. The configured Vite base path matches this repository. Hash-based navigation supports refresh and direct project links on static hosting.
+Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_CONTACT_ENDPOINT` to your HTTPS form backend. Rebuild afterward. Public configuration must never contain private API keys. No endpoint means the UI explains that direct form delivery is unavailable and offers direct email. See `docs/DESIGN.md` for the payload contract and security requirements.
 
-See `docs/REBUILD.md` for the implemented scope and owner information still required. Old components are retained for reference and are not loaded by the new app.
+## Verification
 
-## Browser verification
+`npm test` covers validation and actual submission success/failure behavior using controlled fetch responses. `npm run typecheck` checks all TS components. Browser tests cover real routes, theme/language, filters, skill tabs, mobile navigation, form states and WCAG checks; `npm run test:e2e` requires Playwright Chromium and a built `out/` directory. CI publishes reports/screenshots as artifacts.
 
-`npm test`, `npm run check:app` and `npm run build` check the rebuilt application. `npm run test:e2e` runs the desktop/mobile browser suite after building (requires Chromium installed through Playwright). The **Verify portfolio** GitHub workflow installs the browser and runs these checks automatically, saving screenshots and an HTML report as the `portfolio-browser-verification` artifact for 14 days.
+The Site remains private and noindex until the owner selects public production hosting.
